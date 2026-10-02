@@ -1,0 +1,1070 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<!-- ДВА НАЗВАНИЯ: игровое (с героем) + SEO-заголовок с темой, возрастом и «подготовка к школе» -->
+<title>Поздняя осень — занятие для детей 7 лет | Подготовка к школе с Яшей</title>
+<meta name="description" content="Интерактивное занятие для детей 7 лет: чтение слов и предложений, счёт, узоры, приметы поздней осени. Подготовка к школе с папильоном Яшей.">
+<style>
+
+  :root{ --green:#2E7D32; --ink:#1a1a1a; --paper:#FAF6EC; --line:#e0dccf; --card:#fff;
+         --red:#D32F2F; --blue:#0D3C8F; }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+  html,body{margin:0;height:100%;max-width:100vw;overflow-x:hidden;background:var(--paper);color:var(--ink);
+            font-family:"Segoe UI",Arial,sans-serif;overflow-x:hidden}
+  img{object-fit:contain;display:block;max-height:16vh}
+  h1{font-size:clamp(30px,7vw,50px);color:var(--green);text-align:center;line-height:1.15;margin:6px 0}
+  h2{font-size:clamp(32px,7.5vw,52px);color:var(--green);text-align:center;line-height:1.15;margin:6px 0}
+  p{font-size:clamp(26px,6vw,38px);line-height:1.3;margin:6px 0;text-align:center}
+  .sub{font-size:clamp(24px,5.4vw,34px);color:var(--ink);text-align:center;margin:4px 0 8px}
+  .sub.green{color:var(--green)}
+  .top{width:100%;display:flex;justify-content:space-between;align-items:center;
+       font-size:clamp(17px,3.8vw,24px);color:var(--green);font-weight:400}
+  .counter{font-size:clamp(17px,3.8vw,24px);color:var(--green);font-weight:400}
+  .sub.green{color:var(--green);font-weight:700}
+  .wrap{position:relative;min-height:100%;display:flex;flex-direction:column}
+  .screen{display:none;flex-direction:column;align-items:center;gap:8px;min-height:100vh;padding:10px 12px 130px}
+  .screen.on{display:flex}
+  .row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+  .btn{font-size:clamp(17px,3.8vw,24px);min-height:56px;padding:10px 18px;border-radius:14px;
+       border:2px solid var(--green);background:#fff;color:var(--green);font-weight:700;
+       cursor:pointer;touch-action:manipulation;font-family:inherit}
+  .btn.main{background:var(--green);color:#fff}
+  .card{background:var(--card);border:2px solid #cfcfcf;border-radius:16px;padding:6px;
+        display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;max-width:calc(33.3% - 14px)}
+  .card img{max-height:13vh}
+  .card .word{font-size:clamp(16px,3.6vw,22px);font-weight:700;text-align:center;line-height:1.15}
+  .card.done{border-color:var(--green);background:#F0F7F0}
+  .card.gone{opacity:.25}
+  .card.shake{animation:sh .45s}
+  @keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  .vowel{color:var(--red) !important}
+  .cons{color:var(--blue)}
+  .cons{color:var(--blue) !important}
+  .feedback{font-size:clamp(28px,5.8vw,40px);font-weight:700;color:var(--ink);text-align:center;min-height:1.2em}
+  .video{width:100%;max-height:72vh;border-radius:14px;background:#000}
+  .logo{max-width:min(58vw,320px);max-height:26vh;border-radius:22px;border:4px solid #fff;
+        box-shadow:0 6px 26px rgba(0,0,0,.18)}
+  .placeholder{border:3px dashed #b9b3a3;border-radius:14px;color:#8a8474;font-size:15px;
+               display:flex;align-items:center;justify-content:center;text-align:center;
+               padding:8px;min-height:12vh;min-width:100px;max-width:140px}
+  .foot{position:fixed;left:0;right:0;bottom:0;padding:10px 12px calc(16px + env(safe-area-inset-bottom));
+        background:linear-gradient(180deg,rgba(250,246,236,0) 0%,var(--paper) 45%);display:flex;gap:12px;
+        justify-content:center;z-index:2147483000}
+  .birdcard{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:12px}
+  .birdcard img{max-height:26vh}
+  .birdcard .word{font-size:clamp(24px,5.6vw,36px);font-weight:800;text-align:center}
+  .heroimg{max-height:20vh;border-radius:14px}
+  .heropick{margin-top:14px;display:flex;flex-direction:column;align-items:center;gap:4px;border:3px solid transparent;
+            border-radius:18px;padding:6px;cursor:pointer;flex:1 1 0;min-width:0}
+  .heropick .word{font-size:clamp(18px,4.2vw,26px);font-weight:800;text-align:center;line-height:1.1;color:var(--green)}
+  .heropick.chosen{border-color:var(--green);background:#F0F7F0}
+  .expr{font-size:clamp(34px,8vw,54px);font-weight:800;text-align:center}
+  .birds{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-items:center;align-content:center;max-width:100%}
+  .birds img{max-height:10vh}
+  .birds img.gone{opacity:.28}
+  .slots{display:flex;gap:0;justify-content:center;border-bottom:5px solid var(--green);padding-bottom:2px;min-height:60px;align-items:flex-end}
+  .slot.full{font-size:clamp(30px,7vw,46px);letter-spacing:0}
+  .slot{min-width:52px;min-height:56px;display:flex;align-items:center;justify-content:center;
+        font-size:clamp(26px,6vw,38px);font-weight:800;letter-spacing:-1px}
+  .words{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .sent{min-height:64px;font-size:clamp(26px,6vw,38px);font-weight:700;text-align:center}
+  .stars{font-size:64px;text-align:center}
+  .final{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:clamp(28px,6.4vw,42px);
+         text-align:center;color:var(--green)}
+  .momcard{background:#fff;border:2px solid var(--line);border-radius:14px;padding:10px 14px;max-width:620px}
+  .momcard p{font-size:clamp(18px,4vw,26px) !important;margin:0 0 4px}
+  .momcard p:last-child{margin:0}
+  .skor{color:var(--green);font-size:clamp(22px,5vw,32px);text-align:center;font-weight:700;margin:2px 0}
+  .skor.say{font-weight:400;font-size:clamp(18px,4.2vw,26px);line-height:1.25}
+  .mom{display:none}
+  /* задание 2: пары — компактно, чтобы все пять влезали и подписи не резались */
+  #s4{padding-bottom:100px;gap:6px}
+  #s4 .card{max-width:48%;padding:4px}
+  #s4 .card img{max-height:7.5vh}
+  #s4 .card .word{font-size:clamp(13px,3vw,18px);text-align:center;line-height:1.12}
+  /* счёт: пять птиц в одну строку, следующие — ниже */
+  #s6 .birds img{height:10vh;max-height:10vh;width:auto;max-width:22vw;object-fit:contain}
+  /* листочки — крупно */
+  #s5l .row img{max-height:34vh}
+  #sylPic img{max-height:48vh;max-width:94%;border-radius:14px}
+  /* «убери лишние» — крупные карточки в два ряда по три */
+  #s5o .card{max-width:31%;padding:5px}
+  #s5o .row{gap:16px 10px;margin-top:2vh}
+  #s5o .card img{width:100%;height:24vh;max-height:24vh;object-fit:contain;border-radius:10px}
+  #s5o .card .word{font-size:clamp(16px,3.6vw,21px)}
+  /* задачи: птицы крупнее, интервал больше, экран распределён */
+  #s6{justify-content:space-between;padding-top:2vh;padding-bottom:4vh}
+  #s6 .birds{gap:6px}
+  #s6 .birds img{max-height:15vh;max-width:17%}
+  #s6 #countBirds2 img{max-height:19vh;max-width:calc(28% + 2px)}
+  #s6 #countBirds{gap:10px}
+  /* предложение: картинка 16:9, максимально крупно */
+  #s7 .sub.green{margin-bottom:2px}
+  #sentPic{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center}
+  #sentPic img{max-width:100%;max-height:100%;object-fit:contain}
+  /* видео и титул — по центру экрана */
+  #s0{justify-content:center}
+  #sz,#ss{justify-content:center}
+  #s8 .stars{font-size:52px;margin:0}
+
+  /* ── служебное для каркаса (в готовом занятии можно оставить) ── */
+  .hintbox{background:#fff;border:2px dashed var(--line);border-radius:14px;padding:8px 12px;
+           max-width:640px;font-size:clamp(16px,3.6vw,22px);color:#6b6b6b;text-align:center}
+  /* задания 2, 4, 6: блок по центру — низ не пустует */
+  #s2, #s4, #s7, #sm, #sc, #s6, #sg{justify-content:center}
+  #countBirds{gap:4px}
+  #s4{justify-content:space-evenly;padding-top:2vh}
+  #s2 .card img{width:100%;height:26vh;max-height:26vh;object-fit:contain;border-radius:10px}
+  /* задание 3: картинка зверя крупнее */
+  #pairPic img{max-height:31vh;width:auto}
+  /* задание «Продолжи узор»: фигуры */
+  #rowShow{gap:2px;align-items:center;flex-wrap:nowrap;width:100%;max-width:100vw;justify-content:center;overflow:hidden}
+  .cell{flex:0 0 auto;padding:1px;border:2px solid #cfcfcf;border-radius:10px;background:#fff;
+        display:flex;align-items:center;justify-content:center}
+  .cell img{height:7.6vh;max-height:7.6vh;width:auto}
+  .cell.empty{border:3px dashed var(--green);background:#f2f8f2}
+  .cell.filled{border-color:var(--green);background:#F0F7F0}
+  .rowfig{height:8.5vh;width:8.5vh;object-fit:contain}
+  .qmark{font-size:8.5vh;line-height:1;color:var(--green);font-weight:700;
+         display:flex;align-items:center;justify-content:center;min-width:5vh}
+  .figbtn{padding:6px;min-height:auto}
+  .figopt{height:11vh;width:11vh;object-fit:contain}
+  /* ── новые механики ── */
+  .hint2{font-size:clamp(15px,3.6vw,20px);color:#6b6b6b;margin:0 0 4px}
+  #monRow, #pairPic, #cmpRow, #monWords, #pairBtns, #ridRow{width:100%}
+  .aword, .apic{overflow:hidden}
+  #monRow{flex-wrap:nowrap;gap:12px;margin-bottom:10px}
+  .mcard{flex:1 1 0;padding:5px;display:flex;flex-direction:column;align-items:center;max-width:32%}
+  .mcard img{width:100%;height:34vh;max-height:34vh;object-fit:contain;border-radius:10px}
+  #sm{justify-content:space-evenly;padding-top:2vh}
+  .mcard.picked{border-color:var(--green);box-shadow:0 0 0 3px #cfe8cf}
+  .mcard.done{opacity:.55}
+  #monWords{gap:10px}
+  .mword{padding:12px 10px;font-size:clamp(16px,3.8vw,22px);max-width:31%}
+  .mword.done{border-color:var(--green);background:#F0F7F0;opacity:.55}
+  #cmpRow{gap:10px;flex-wrap:nowrap}
+  .ccard{flex:1 1 0;padding:5px;max-width:47%}
+  .ccard img{width:100%;height:31vh;max-height:31vh;object-fit:contain;border-radius:10px}
+  .ccard.big{flex:0 0 auto;max-width:86%}
+  .ccard.big img{height:46vh;max-height:46vh}
+  #sc{justify-content:space-evenly}
+  #pairPic{gap:6px;flex-wrap:nowrap;padding:0 2vw} #pairBtns{padding:0 2vw}
+  .apic{flex:0 0 31%;max-width:31%;padding:0;border:0;background:transparent;box-shadow:none;height:auto;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px}
+  .apic .cap, .aword .cap{font-size:clamp(16px,3.9vw,23px);font-weight:600;margin-top:0;text-align:center;line-height:1.15}
+  .apic img{width:100%;height:16.5vh;max-height:16.5vh;object-fit:contain;background:transparent;border:0;border-radius:12px;margin:0;display:block}
+  .apic.picked img{outline:5px solid var(--green);outline-offset:2px} .apic.picked{border:0;background:transparent;box-shadow:none}
+  .apic.done img{outline:5px solid var(--green);outline-offset:2px} .apic.done{border:0;background:transparent}
+  .aword{padding:7px 5px;font-size:clamp(12px,3vw,17px);max-width:47%}
+  .aword.done{border-color:var(--green);background:#F0F7F0;opacity:.55}
+  #greenRow{display:grid;gap:5px;width:100%;max-width:365px;margin:0 auto}
+  .gcell{padding:2px;min-height:auto;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
+  .ropt{flex:1 1 0;padding:4px;max-width:32%}
+  .ropt img{width:100%;height:14vh;max-height:14vh;object-fit:contain;border-radius:10px}
+  #ridPic{width:100%}
+  #ridPic img{width:100%;height:68vh;max-height:68vh;object-fit:contain;border-radius:14px}
+  #sz{justify-content:center}
+  .gcell img{width:100%;object-fit:contain}
+  .gcell.found{border:4px solid var(--green);background:#DFF0DF;box-shadow:0 0 0 2px #bfe0bf inset}
+  #countBirds .birds{flex-wrap:wrap;gap:4px;justify-content:center;max-width:100%}
+  #countBirds .birds img{height:10vh;max-height:10vh;width:auto;max-width:11.4vw;object-fit:contain}
+  #countBirds .sign{font-size:clamp(16px,4vw,24px);font-weight:700;color:var(--green);margin-right:1px}
+  #countBirds .rowlab{font-size:clamp(14px,3.2vw,18px);color:#6b6b6b}
+  /* скороговорка */
+  #ss{justify-content:center}
+  #ss .skor{margin:0}
+  #ss .skorline{margin:1.2vh 0;line-height:1.35}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ═══════════════ ЭКРАН 1. ТИТУЛ (визитка занятия) ═══════════════
+       ЧТО МЕНЯЕМ: название (h1), подзаголовок (.sub), ролик «Начало» (video/nachalo.mp4).
+       Стиль не трогаем: логотип → название → подзаголовок → видео → кнопка «Играть». -->
+  <section class="screen" id="s0">
+    <video class="logo" id="vidlogo" src="video/logo_yasha.mp4" poster="images/poster_logo.jpg"
+           autoplay muted loop playsinline preload="metadata"></video>
+    <h1>Поздняя осень</h1>
+    <p class="sub green">Осеннее приключение с Яшей!!!</p>
+    <video class="video" id="vid0" src="video/nachalo.mp4" poster="images/poster_nachalo.jpg"
+           playsinline preload="metadata"></video>
+    <div class="row"><button class="btn main" data-act="playStart()">▶ Играть</button></div>
+  </section>
+
+
+  <!-- ═══════════════ ЗАДАНИЕ 1. СОБЕРИ СЛОВО ИЗ СЛОГОВ ═══════════════
+       Механика «Собери слово». ЧТО МЕНЯЕМ: массив WORDS (слово, слоги, картинка).
+       Гласные красные, согласные синие — красит функция paint(). -->
+  <section class="screen" id="s1">
+    <div class="top"><span>Задание 5 из 8</span><span class="counter" id="cntSyl"></span></div>
+    <p class="sub green">Собери слово из слогов</p>
+    <div class="row" id="sylPic"></div>
+    <div class="slots" id="sylSlots"></div>
+    <div class="row" id="sylRow"></div>
+    <div class="feedback" id="fb1"></div>
+  </section>
+
+  <!-- ═══════════════ ЗАДАНИЕ 2. УБЕРИ ЛИШНИЕ ═══════════════
+       Механика «Найди лишнее». ЧТО МЕНЯЕМ: массив ODD (6 карточек: 4 правильные + 2 ловушки).
+       Ловушки в коде всегда расходятся: рядом не стоят. -->
+  <section class="screen" id="s2">
+    <div class="top"><span>Задание 2 из 8</span><span class="counter" id="cntOdd"></span></div>
+    <p class="sub green">Убери две картинки, которые не про позднюю осень</p>
+    <div class="row" id="oddRow"></div>
+    <div class="feedback" id="fb2"></div>
+  </section>
+
+  <!-- ═══════════════ ЗАДАНИЕ 6. КАК ЖИВОТНЫЕ ГОТОВЯТСЯ К ЗИМЕ (соединение пар) ═══════════════
+       Механика «Найди пару»: картинки сверху, подписи снизу, нажал картинку → нажал её подпись.
+       ЧТО МЕНЯЕМ: массив ANIM в коде. -->
+  <section class="screen" id="s3">
+    <div class="top"><span>Задание 6 из 8</span><span class="counter" id="cntPair"></span></div>
+    <p class="sub green">Как животные готовятся к зиме</p>
+    <p class="hint2">Нажимай на картинку животного, потом как он зимует</p>
+    <div class="row" id="pairPic"></div>
+    <div class="words" id="pairBtns"></div>
+    <div class="feedback" id="fb3"></div>
+  </section>
+
+  <!-- ═══════════════ ЗАДАНИЕ 4. ОТПРАВЬ К ГЕРОЮ (классификация) ═══════════════
+       Механика «Разложи по группам»: у каждого героя своя группа, ребёнок нажимает
+       на героя под картинкой. ЧТО МЕНЯЕМ: HEROES и SORT. -->
+  <!-- ═══ ЗАДАНИЕ 4. ПРОДОЛЖИ УЗОР (механика «Продолжи ряд») ═══
+       Показываем ряд фигур и три варианта ответа. ЧТО МЕНЯЕМ: ROWS в коде. -->
+  <section class="screen" id="s4">
+    <div class="top"><span>Задание 3 из 8</span><span class="counter" id="cntRow"></span></div>
+    <p class="sub green">Продолжи узор — что дальше?</p>
+    <div class="row" id="rowShow"></div>
+    <div class="row" id="rowAns"></div>
+    <div class="feedback" id="fb4"></div>
+  </section>
+
+  <!-- ═══════════════ СКОРОГОВОРКА (середина занятия) ═══════════════
+       Видео + текст, повторяем три раза. Файл — video/skorogovorka.mp4. -->
+  <section class="screen" id="ss">
+    <div class="top"><span>Скороговорка</span><span></span></div>
+    <p class="skor" id="skorText"></p>
+    <video class="video" id="vids" src="video/skorogovorka.mp4" poster="images/poster_skorogovorka.jpg"
+           playsinline preload="none"></video>
+    <p class="skor say" id="skorSay"></p>
+    <div class="feedback" id="fbs"></div>
+  </section>
+
+  <!-- ═══════════════ ЗАДАНИЕ 5. РЕШИ ЗАДАЧИ (счёт) ═══════════════
+       Механика «Реши задачку»: предметы показаны КАРТИНКАМИ в нужном количестве,
+       «улетевшие» — бледные. ЧТО МЕНЯЕМ: массив SUMS. -->
+  <!-- ═══════════════ ЗАГАДКА (после скороговорки) ═══════════════
+       Текст загадки + три отгадки; верная — похвала и картинка-отгадка.
+       ЧТО МЕНЯЕМ: массив RIDDLES. -->
+  <section class="screen" id="sz">
+    <div class="top"><span>Загадка</span><span class="counter" id="cntRiddle"></span></div>
+    <p class="sub green" id="ridText"></p>
+    <div class="row" id="ridPic"></div>
+    <div class="row" id="ridRow"></div>
+    <div class="feedback" id="fbz"></div>
+  </section>
+
+  <section class="screen" id="s6">
+    <div class="top"><span>Задание 7 из 8</span><span class="counter" id="cntSum"></span></div>
+    <p class="sub green">Реши задачи</p>
+    <div class="birds" id="countBirds"></div>
+    <p class="example" id="countExpr"></p>
+    <div class="row" id="countAns"></div>
+    <div class="feedback" id="fb6"></div>
+  </section>
+
+  <!-- ═══════════════ ЗАДАНИЕ 6. СОСТАВЬ ПРЕДЛОЖЕНИЕ ═══════════════
+       Механика «Собери предложение»: слова перемешаны, при верном сборе показываем картинку.
+       ЧТО МЕНЯЕМ: массив SENTS (предложение + картинка 16:9). -->
+  <section class="screen" id="s7">
+    <div class="top"><span>Задание 8 из 9</span><span class="counter" id="cntSent"></span></div>
+    <p class="sub green">Составь правильное предложение</p>
+    <div class="sent" id="sentLine"></div>
+    <div class="words" id="sentBtns"></div>
+    <div class="row" id="sentPic"></div>
+    <div class="feedback" id="fb7"></div>
+  </section>
+
+  <!-- ═══════════════ ЗАДАНИЕ 1. МЕСЯЦЫ ОСЕНИ (порядок) ═══════════════
+       Механика «Порядок»: три карточки месяцев перемешаны, ребёнок нажимает по порядку.
+       ЧТО МЕНЯЕМ: массив MONTHS. -->
+  <section class="screen" id="sm">
+    <div class="top"><span>Задание 1 из 8</span><span class="counter" id="cntMonth"></span></div>
+    <p class="sub green">Месяцы осени</p>
+    <p class="hint2" id="monHint">Нажми картинку, потом её название: сентябрь → октябрь → ноябрь</p>
+    <div class="row" id="monRow"></div>
+    <div class="words" id="monWords"></div>
+    <div class="feedback" id="fbm"></div>
+  </section>
+
+  <!-- ═══════════════ ЗАДАНИЕ 4. СРАВНИ: РАННЯЯ И ПОЗДНЯЯ ОСЕНЬ ═══════════════
+       Механика «Сравнение»: две картинки, выбрать нужную. ЧТО МЕНЯЕМ: массив CMP. -->
+  <section class="screen" id="sc">
+    <div class="top"><span>Задание 4 из 8</span><span class="counter" id="cntCmp"></span></div>
+    <p class="sub green" id="cmpQ"></p>
+    <div class="row" id="cmpRow"></div>
+    <div class="feedback" id="fbc"></div>
+  </section>
+
+  <!-- ═══════════════ ЗАДАНИЕ 9. НАЙДИ ВСЕ ЗЕЛЁНЫЕ КВАДРАТЫ ═══════════════
+       Механика «Нажми на все…»: поле 4×4, надо найти все зелёные квадраты. -->
+  <section class="screen" id="sg">
+    <div class="top"><span>Задание 8 из 8</span><span class="counter" id="cntGreen"></span></div>
+    <p class="sub green" id="sgTitle">Найди все квадраты зелёного цвета</p>
+    <p class="hint2">Нажми на каждую подходящую фигуру</p>
+    <div class="row" id="greenRow"></div>
+    <div class="feedback" id="fbg"></div>
+  </section>
+
+  <!-- ═══════════════ ФИНАЛ ═══════════════
+       ⭐ НАД видео → видео-итог → пословица → «Маме 💛» → «Пройти заново».
+       Пословица — курсивом, с большой буквы и точкой. -->
+  <section class="screen" id="s8">
+    <div class="stars">⭐</div>
+    <video class="video" id="vid8" src="video/itog.mp4" poster="images/poster_itog.jpg"
+           playsinline preload="none"></video>
+    <p class="final">Ноябрь — ворота зимы.</p>
+    <div class="momcard">
+      <p>Маме 💛</p>
+      <p>Погуляйте и найдите приметы поздней осени: тонкий лёд на лужах, иней на ветках, стаи птиц, первый снег. Назовите, кто из зверей уже готов к зиме.</p>
+    </div>
+    <button class="btn main" data-act="restart()">Пройти заново</button>
+  </section>
+
+</div>
+<div class="foot" id="foot"></div>
+
+<script>
+/* ════════════════════════════════════════════════════════════════════
+   КАРКАС ЗАНЯТИЯ. Порядок экранов:
+   s0 титул → sz загадка → s1 слоги → s2 лишние → s3 пара → s4 к герою
+   → ss скороговорка (СЕРЕДИНА) → s6 задачи → s7 предложение → s8 финал
+   Чтобы убрать задание — удалите его <section> и уберите из NEXT.
+   Чтобы добавить — скопируйте похожий <section> и допишите в NEXT.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ═══ МЕНЯЕМ ЗДЕСЬ 1: НАЗВАНИЯ И КЛЮЧИ ОЗВУЧКИ ═══
+   Каждый ключ — имя файла в sounds/ (sounds/sl1.mp3). Нет ключа — экран молчит. */
+var SCREEN_SAY = { sm:'sm1', s2:'o1', s4:'r1', s1:'sl1', s3:'p1' };
+
+/* переходы между экранами (задаются вашим порядком занятия) */
+var NEXT = { s0:'sm', sm:'s2', s2:'s4', s4:'sc', sc:'s1', s1:'s3', s3:'ss', ss:'sz', sz:'s6', s6:'sg', sg:'s8' };
+var VIDEO_SHOW = { ss:'vids', s8:'vid8' };   /* видео играет при входе на свой экран */
+
+/* ═══ МЕНЯЕМ ЗДЕСЬ 2: ЧТО ПОКАЗЫВАТЬ ═══ */
+
+/* Задание 1 — слова из слогов (механика «Собери слово») */
+var WORDS = [
+  { w:'ДОЖДИК',   syl:['ДОЖ','ДИК'],      i:'dozhdik.jpg' },
+  { w:'ЛИСТОПАД', syl:['ЛИС','ТО','ПАД'], i:'sl_listopad.jpg' },
+  { w:'ГОЛОЛЁД',  syl:['ГО','ЛО','ЛЁД'],  i:'gololyod.jpg' }
+];
+
+/* Задание 2 — «убери лишние»: good:true — правильные, good:false — ловушки (их две) */
+var ODD = [
+  { i:'odd_izmoro.jpg',    good:true,  w:'Изморозь на ветках' },
+  { i:'gololyod.jpg',      good:true,  w:'Гололёд' },
+  { i:'luzha_primeta.jpg', good:true,  w:'Лужа с льдинкой' },
+  { i:'sl_listopad.jpg',   good:true,  w:'Листопад' },
+  { i:'zag_vesna.jpg',     good:false, w:'Цветущий сад' },
+  { i:'sl_snegopad.jpg',   good:false, w:'Снегопад' }
+];
+
+/* Задание 3 — картинка + три подписи, верная одна (механика «Найди пару») */
+/* Пары «осенью → зимой»: сверху зверь осенью, снизу — как он зимует.
+   ЧТО МЕНЯЕМ: ANIM_STAGES (два этапа по три пары). */
+var ANIM_STAGES = [
+  [ { a:'zver_ezh_osen.jpg',    at:'ЁЖ',      w:'zver_ezh.jpg',         wt:'ЁЖ В НОРЕ' },
+    { a:'zver_zayac_seriy.jpg', at:'ЗАЯЦ',    w:'zver_zayac.jpg',       wt:'ЗАЙКА БЕЛЫЙ' },
+    { a:'zver_medved_osen.jpg', at:'МЕДВЕДЬ', w:'zver_medved.jpg',      wt:'МЕДВЕДЬ В БЕРЛОГЕ' } ],
+  [ { a:'zver_lisa_osen.jpg',   at:'ЛИСА',    w:'zver_lisa.jpg',        wt:'ЛИСА В НОРЕ' },
+    { a:'ptica_lastochka.jpg',  at:'ПТИЦА',   w:'pticy_letyat.jpg',     wt:'ПТИЦЫ УЛЕТАЮТ' },
+    { a:'zver_belka_osen.jpg',  at:'БЕЛКА',   w:'zver_belka_dupno.jpg', wt:'БЕЛКА В ДУПЛЕ' } ]
+];
+/* Загадки: отгадку ребёнок выбирает КАРТИНКОЙ; при верном ответе показываем кадр 16:9. */
+var RIDDLES = [
+  { t:'Пусты поля, мокнет земля, дождь поливает. Когда это бывает?', say:'z1', a:'ОСЕНЬ',
+    opts:[ {c:'ВЕСНА', i:'zag_vesna.jpg'}, {c:'ОСЕНЬ', i:'zag_osen.jpg'}, {c:'ЗИМА', i:'zag_zima.jpg'} ],
+    reward:'zag_osen.jpg' },
+  { t:'Скатерть бела всю землю одела.', say:'z2', a:'ЗИМА',
+    opts:[ {c:'ВЕСНА', i:'zag_vesna.jpg'}, {c:'ЗИМА', i:'zag_zima.jpg'}, {c:'ОСЕНЬ', i:'zag_osen.jpg'} ],
+    reward:'zag_zima.jpg' }
+];
+var MONTHS = [
+  { i:'mes_sentyabr.jpg', t:'СЕНТЯБРЬ' },
+  { i:'mes_oktyabr.jpg',  t:'ОКТЯБРЬ' },
+  { i:'mes_noyabr.jpg',   t:'НОЯБРЬ' }
+];
+var CMP = [
+  { q:'Где поздняя осень?',     say:'sc2', a:'mes_noyabr.jpg',   b:'mes_sentyabr.jpg' },
+  { q:'Где ранняя осень?',      say:'sc1', a:'mes_sentyabr.jpg', b:'mes_oktyabr.jpg' },
+  { q:'А где поздняя осень?',   say:'sc3', a:'mes_noyabr.jpg',   b:'mes_oktyabr.jpg' }
+];
+
+/* Задание 4 — продолжи узор: показываем ряд, ребёнок выбирает следующую фигуру */
+/* Продолжи ряд: грибы, листья, орехи. Ряд растёт: 4 → 5 → 6 картинок.
+   ЧТО МЕНЯЕМ: ROWS. */
+var ROWS = [
+  { show:['pr_grib.jpg','pr_list_zheltyj.jpg','pr_oreh.jpg','pr_grib.jpg'],
+    ans:'pr_list_zheltyj.jpg',
+    opts:['pr_list_zheltyj.jpg','pr_oreh.jpg','pr_grib.jpg'] },
+  { show:['pr_list_zheltyj.jpg','pr_grib.jpg','pr_list_dub.jpg','pr_oreh.jpg'],
+    ans:'pr_list_zheltyj.jpg',
+    opts:['pr_list_zheltyj.jpg','pr_grib.jpg','pr_list_dub.jpg'] },
+  { show:['pr_grib.jpg','pr_list_zheltyj.jpg','pr_grib.jpg','pr_oreh.jpg'],
+    ans:'pr_grib.jpg',
+    opts:['pr_grib.jpg','pr_oreh.jpg','pr_list_zheltyj.jpg'] }
+];
+
+/* Задание 5 — задачи: a — картинка предмета, n — сколько; faded — сколько «ушло» */
+/* Задачи: овощи её картинками. Примеры 8 − 5, 7 + 2, 9 − 2. ЧТО МЕНЯЕМ: SUMS. */
+var SUMS = [
+  { a:'veg_ogurec.jpg',   n:8, gone:5, expr:'8 − 5 = ?', ans:3,  wrong:[2,4],  say:'s1' },
+  { a:'veg_pomidor.jpg',  n:7, a2:'veg_baklazhan.jpg', n2:2, expr:'7 + 2 = ?', ans:9,  wrong:[8,10], say:'s2' },
+  { a:'veg_kapusta.jpg',  n:7, a2:'veg_kapusta.jpg',   n2:3, expr:'7 + 3 = ?', ans:10, wrong:[9,11], say:'s3' }
+];
+
+/* Задание 6 — предложения: слова вьются случайно, при верном сборе появляется картинка 16:9 */
+var SENTS = [
+  { t:'Наступили холодные ноябрьские дни', i:'sent_tuman.jpg' },
+  { t:'Лужи покрылись тонким льдом',      i:'sent_luzha.jpg' },
+  { t:'Птицы улетают в тёплые края',      i:'sent_pticy.jpg' },
+  { t:'Медведь спит в берлоге',           i:'sent_medved.jpg' }
+];
+
+/* Скороговорка — текст внизу экрана (само видео звучит в ролике) */
+var SKOR = { say:'Повтори три раза',
+  t1:'Шуршат в овраге листья, шуршат и шелестят.',
+  t2:'Шуршат в овраге листья, шуршат и шелестят, шуршат и шелестят — пугают всех мышат!' };
+
+/* ═══════════════════════════════ КОД ДАЛЬШЕ НЕ ТРОГАЕМ ═══════════════════════════════ */
+
+var PRAISE = ['genialno','tochno2','p_molodec','p_da','p_konechno','p_soglasna','p_aga','p_verno','p_ty_prav','p_konechno2'];
+var HAVE = PRAISE.concat(['ne_tochno','nothing','star3','sm1','o1','r1','sc1','sc2','sc3','sl1','p1','p2','sk1','z1','z2','s1','s2','s3','g1','g2','g3','g4','f1']);
+var HAS_IMG = {};
+function loadImgList(list){ list.forEach(function(f){ HAS_IMG[f]=1; }); }
+function picture(src, cls){
+  if(HAS_IMG[src]) return '<img src="images/'+src+'?v=10" class="'+(cls||'')+'" alt="">';
+  return '';
+}
+function q(id){ return document.getElementById(id); }
+function shuffle(a){
+  a = a.slice();
+  for(var i = a.length-1; i > 0; i--){ var j = Math.floor(Math.random()*(i+1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
+  return a;
+}
+var VOW = 'АЕЁИОУЫЭЮЯ';
+function paint(s){
+  return String(s).split('').map(function(ch){
+    if(VOW.indexOf(ch.toUpperCase()) > -1) return '<span class="vowel">'+ch+'</span>';
+    if(/[А-Яа-яЁё]/.test(ch)) return '<span class="cons">'+ch+'</span>';
+    return ch;
+  }).join('');
+}
+var current = null, lastPraise = '', unlocked = false;
+function hush(){ if(current){ try{ current.pause(); current.currentTime = 0; }catch(e){} } }
+function play(key){
+  hush();
+  if(HAVE.indexOf(key) > -1){ try{ current = new Audio('sounds/'+key+'.mp3'); current.play().catch(function(){}); }catch(e){} }
+}
+function praise(){
+  var pool = PRAISE.filter(function(x){ return x !== lastPraise; });
+  var pick = pool[Math.floor(Math.random()*pool.length)];
+  lastPraise = pick; play(pick);
+}
+function playVideo(id){
+  var v = q(id); if(!v) return;
+  try{
+    v.currentTime = 0; v.muted = false;
+    var pr = v.play();
+    if(pr && pr.catch) pr.catch(function(){
+      /* браузер запретил звук: играем без звука и включаем его первым касанием */
+      v.muted = true; v.dataset.needSound = '1'; v.play().catch(function(){});
+    });
+  }catch(e){}
+}
+/* первое касание включает звук там, где браузер его запретил */
+document.addEventListener('pointerdown', function(){
+  ['vid0','vids','vid8'].forEach(function(id){
+    var v = document.getElementById(id);
+    if(v && v.muted && v.dataset.needSound === '1' && !v.paused){ v.muted = false; }
+  });
+}, true);
+function bindTapVideo(id){
+  var v = q(id); if(!v) return;
+  v.addEventListener('pointerdown', function(e){
+    e.preventDefault();
+    if(v.muted){ v.muted = false; }                 /* тап по ролику — включаем звук */
+    if(v.paused || v.ended){ v.play().catch(function(){}); }
+    else if(v.dataset.needSound !== '1'){ v.pause(); }
+  });
+}
+/* кнопка внизу: «Дальше ➡» появляется только после выполненного задания */
+function footNext(id, text){
+  var old = q('foot').querySelector('[data-act^="go("]');
+  if(old) old.remove();
+  var b = document.createElement('button');
+  b.className = 'btn main'; b.setAttribute('data-act','go("'+id+'")'); b.textContent = text || 'Дальше ➡';
+  q('foot').appendChild(b);
+}
+/* страховка: после 3 ошибок в задании появляется «Пропустить ➡» */
+function giveSkip(id){
+  if(q('skip_'+id)) return;
+  var b = document.createElement('button');
+  b.className = 'btn'; b.id = 'skip_'+id;
+  b.setAttribute('data-act','go("'+NEXT[id]+'")'); b.textContent = 'Пропустить ➡';
+  q('foot').appendChild(b);
+}
+function show(id){
+  hush();
+  [].slice.call(document.querySelectorAll('.screen')).forEach(function(s){ s.classList.remove('on'); });
+  q(id).classList.add('on');
+  q('foot').innerHTML = '';
+  if(id === 'ss'){                       /* видео-экраны: «Дальше» всегда доступно */
+    footNext(NEXT[id], 'Дальше ➡');
+  }
+  if(VIDEO_SHOW[id]) playVideo(VIDEO_SHOW[id]);
+  if(ONSHOW[id]) ONSHOW[id]();
+  var key = SCREEN_SAY[id];
+  if(key) play(key);
+}
+function go(id){ show(id); }
+/* титул: один тап запускает ролик, повторные НЕ перезапускают, страховка «Продолжить» */
+function playStart(){
+  var v = q('vid0');
+  if(v && v.dataset.started === '1' && !v.paused) return;
+  if(v) v.dataset.started = '1';
+  playVideo('vid0');
+  footNext(NEXT.s0, 'Продолжить ➡');
+}
+function restart(){ show('s0'); }
+var ONSHOW = {};
+
+/* ── разблокировка звука на телефоне: первый тап ── */
+['pointerdown','touchstart','click'].forEach(function(ev){
+  document.addEventListener(ev, function(){
+    if(unlocked) return; unlocked = true;
+    try{ new Audio('sounds/nothing.mp3').play().catch(function(){}); }catch(e){}
+  }, true);
+});
+
+loadImgList([
+  'poster_logo.jpg',
+  'poster_nachalo.jpg',
+  'poster_skorogovorka.jpg',
+  'poster_itog.jpg',
+  'mes_sentyabr.jpg',
+  'mes_oktyabr.jpg',
+  'mes_noyabr.jpg',
+  'tuman_primeta.jpg',
+  'gololyod.jpg',
+  'luzha_primeta.jpg',
+  'odd_izmoro.jpg',
+  'zag_vesna.jpg',
+  'sl_snegopad.jpg',
+  'dozhdik.jpg',
+  'sl_listopad.jpg',
+  'sl_luzha.jpg',
+  'pr_grib.jpg',
+  'pr_list.jpg',
+  'pr_oreh.jpg',
+  'zag_osen.jpg',
+  'zag_zima.jpg',
+  'veg_svekla.jpg',
+  'veg_tykva.jpg',
+  'veg_baklazhan.jpg',
+  'veg_kapusta.jpg',
+  'veg_luk.jpg',
+  'zver_ezh_osen.jpg',
+  'zver_ezh.jpg',
+  'zver_zayac_seriy.jpg',
+  'zver_zayac.jpg',
+  'zver_medved_osen.jpg',
+  'zver_medved.jpg',
+  'zver_lisa_osen.jpg',
+  'zver_lisa.jpg',
+  'ptica_lastochka.jpg',
+  'pticy_letyat.jpg',
+  'zver_belka_osen.jpg',
+  'zver_belka_dupno.jpg',
+  'fig_kv_zheltyj.jpg',
+  'fig_kv_krasnyj.jpg',
+  'fig_kv_sinij.jpg',
+  'fig_kv_zelenyj.jpg',
+  'fig_krug_zheltyj.jpg',
+  'fig_krug_krasnyj.jpg',
+  'fig_krug_zelenyj.jpg',
+  'fig_krug_sinij.jpg',
+  'fig_tre_zheltyj.jpg',
+  'fig_tre_krasnyj.jpg',
+  'fig_tre_sinij.jpg',
+  'fig_tre_zelenyj.jpg',
+  'fig_oval_zheltyj.jpg',
+  'fig_oval_krasnyj.jpg',
+  'fig_oval_sinij.jpg',
+  'fig_oval_zelenyj.jpg']);
+
+bindTapVideo('vid0'); bindTapVideo('vids'); bindTapVideo('vid8');
+q('vid0').addEventListener('ended', function(){ if(q('s0').classList.contains('on')) show(NEXT.s0); });
+q('vid8').addEventListener('ended', function(){ if(q('s8').classList.contains('on')) play('f1'); });
+q('vids').addEventListener('ended', function(){ if(q('ss').classList.contains('on')) play('sk1'); });
+setTimeout(function(){ if(q('s0').classList.contains('on')) footNext(NEXT.s0, 'Продолжить ➡'); }, 8000);
+
+/* ── 1. СЛОГИ ─────────────────────────────────────────────────────── */
+var sylIdx = 0, sylStep = 0, sylErr = 0;
+ONSHOW['s1'] = function(){ sylIdx = 0; sylStep = 0; sylErr = 0; drawSyl(); };
+function drawSyl(){
+  var cur = WORDS[sylIdx];
+  if(sylStep === 0 || !cur.order){ cur.order = shuffle(cur.syl.slice()); }
+  q('sylPic').innerHTML = picture(cur.i);
+  q('sylSlots').innerHTML = cur.syl.map(function(x, k){
+    return '<div class="slot">' + (k < sylStep ? paint(x) : '') + '</div>'; }).join('');
+  var row = q('sylRow'); row.style.display = 'flex'; row.innerHTML = '';
+  cur.order.filter(function(x){ return cur.syl.indexOf(x) >= sylStep; }).forEach(function(x){
+    var b = document.createElement('button');
+    b.className = 'btn'; b.innerHTML = paint(x);
+    b.setAttribute('data-act','sylPick(el,"'+cur.syl[sylStep]+'","'+x+'")');
+    row.appendChild(b);
+  });
+  q('cntSyl').textContent = 'Слово ' + (sylIdx+1) + ' из ' + WORDS.length;
+}
+function sylPick(el, need, got){
+  if(need === got){
+    sylStep++; el.remove(); sylErr = 0;
+    if(sylStep >= WORDS[sylIdx].syl.length){
+      q('sylRow').innerHTML = ''; q('sylRow').style.display = 'none';
+      q('sylSlots').innerHTML = '<div class="slot full">' + paint(WORDS[sylIdx].w) + '</div>';
+      if(sylIdx < WORDS.length-1){ sylIdx++; sylStep = 0; praise(); setTimeout(drawSyl, 2400); }
+      else { praise(); setTimeout(function(){ footNext(NEXT.s1, 'Дальше ➡'); }, 1200); }
+    } else { drawSyl(); }
+  } else {
+    el.classList.add('shake'); play('ne_tochno');
+    setTimeout(function(){ el.classList.remove('shake'); }, 500);
+    if(++sylErr >= 3) giveSkip('s1');
+  }
+}
+
+/* ── 2. УБЕРИ ЛИШНИЕ ─────────────────────────────────────────────── */
+var oddDone = 0, oddErr = 0;
+ONSHOW['s2'] = function(){
+  oddDone = 0; oddErr = 0; q('oddRow').innerHTML = '';
+  var order = shuffle(ODD.map(function(o, k){ return k; }));
+  for(var t = 0; t < 60; t++){                       /* ловушки рядом не ставим */
+    var b1 = -1, b2 = -1;
+    order.forEach(function(k, pos){ if(!ODD[k].good){ if(b1 < 0) b1 = pos; else b2 = pos; } });
+    var sameRow = Math.floor(b1/3) === Math.floor(b2/3), sameCol = (b1 % 3) === (b2 % 3);
+    if(!sameRow && !sameCol) break;
+    order = shuffle(order);
+  }
+  order.forEach(function(k){
+    var o = ODD[k], d = document.createElement('div');
+    d.className = 'card'; d.id = 'od'+k;
+    d.innerHTML = picture(o.i) + '<div class="word">' + paint(o.w) + '</div>';
+    d.setAttribute('data-act','oddPick(el,'+k+')');
+    q('oddRow').appendChild(d);
+  });
+  q('cntOdd').textContent = 'Убрано: ' + oddDone + ' из ' + ODD.filter(function(o){ return !o.good; }).length;
+};
+function oddPick(el, k){
+  if(!ODD[k].good){
+    el.classList.add('gone'); el.removeAttribute('data-act'); oddDone++; oddErr = 0;
+    q('cntOdd').textContent = 'Убрано: ' + oddDone + ' из ' + ODD.filter(function(o){ return !o.good; }).length;
+    if(oddDone === ODD.filter(function(o){ return !o.good; }).length){ praise(); setTimeout(function(){ footNext(NEXT.s2,'Дальше ➡'); }, 1200); }
+  } else {
+    el.classList.add('shake'); play('ne_tochno');
+    setTimeout(function(){ el.classList.remove('shake'); }, 500);
+    if(++oddErr >= 3) giveSkip('s2');
+  }
+}
+
+/* ── 6. ЖИВОТНЫЕ: СОЕДИНЕНИЕ ПАР ─────────────────────────────────────
+   Сначала нажать картинку, потом её подпись. ЧТО МЕНЯЕМ: массив ANIM. */
+var anPicked = '', anPickedSide = '', anDone = 0, anErr = 0, anStage = 0;
+ONSHOW['s3'] = function(){ anStage = 0; drawAnim(); };
+function drawAnim(){
+  var list = ANIM_STAGES[anStage];
+  anPicked = ''; anPickedSide = ''; anDone = 0; anErr = 0;
+  var top = q('pairPic'), bot = q('pairBtns');
+  top.innerHTML = ''; bot.innerHTML = '';
+  shuffle(list.slice()).forEach(function(a){
+    var b = document.createElement('button');
+    b.className = 'btn apic';
+    b.innerHTML = '<img src="images/' + a.a + '?v=10" alt=""><div class="cap">' + paint(a.at) + '</div>';
+    b.setAttribute('data-act','animPick(el,"a","' + a.a + '")');
+    top.appendChild(b);
+  });
+  shuffle(list.slice()).forEach(function(a){
+    var b = document.createElement('button');
+    b.className = 'btn apic';
+    b.innerHTML = '<img src="images/' + a.w + '?v=10" alt=""><div class="cap">' + paint(a.wt) + '</div>';
+    b.setAttribute('data-act','animPick(el,"w","' + a.a + '")');
+    bot.appendChild(b);
+  });
+  q('cntPair').textContent = 'Пара ' + anDone + ' из ' + list.length +
+      ' · этап ' + (anStage+1) + ' из ' + ANIM_STAGES.length;
+}
+function animPick(el, side, key){
+  var card = el;
+  if(!card) return;
+  /* нажали ту же карточку — снимаем выбор */
+  if(anPicked === key && anPickedSide === side){ card.classList.remove('picked'); anPicked = ''; anPickedSide = ''; return; }
+  if(!anPickedSide){                                  /* первая карточка любой стороны */
+    card.classList.add('picked'); anPicked = key; anPickedSide = side; return;
+  }
+  if(anPickedSide === side){                          /* выбрали вторую с той же стороны — меняем выбор */
+    [].slice.call(on().querySelectorAll('.apic')).forEach(function(x){ x.classList.remove('picked'); });
+    card.classList.add('picked'); anPicked = key; return;
+  }
+  if(key === anPicked){                               /* пара совпала */
+    var list = ANIM_STAGES[anStage];
+    anDone++; anErr = 0; anPicked = ''; anPickedSide = '';
+    ['#pairPic', '#pairBtns'].forEach(function(sel){
+      [].slice.call(document.querySelectorAll(sel + ' .apic')).forEach(function(x){
+        if((x.getAttribute('data-act') || '').indexOf('"' + key + '"') > -1){
+          x.classList.add('done'); x.classList.remove('picked'); x.removeAttribute('data-act');
+        }
+      });
+    });
+    var cEl = document.getElementById('cntPair');
+    if(cEl) cEl.textContent = 'Пара ' + anDone + ' из ' + list.length +
+        ' · этап ' + (anStage+1) + ' из ' + ANIM_STAGES.length;
+    if(anDone === list.length){
+      if(anStage < ANIM_STAGES.length - 1){ praise(); anStage++; setTimeout(function(){ drawAnim(); play('p2'); }, 2400); }
+      else { praise(); setTimeout(function(){ footNext(NEXT.s3,'Дальше ➡'); }, 1200); }
+    }
+  } else {                                            /* не пара */
+    card.classList.add('shake'); play('ne_tochno');
+    setTimeout(function(){ card.classList.remove('shake'); }, 500);
+    if(++anErr >= 3) giveSkip('s3');
+  }
+}
+
+/* ── 4. ПРОДОЛЖИ УЗОР ───────────────────────────────────────────── */
+var rowIdx = 0, rowErr = 0;
+ONSHOW['s4'] = function(){ rowIdx = 0; rowErr = 0; drawRow(); };
+function drawRow(){
+  var cur = ROWS[rowIdx];
+  var total = cur.show.length + 1;                       /* + пустая клетка */
+  var hh = total >= 5 ? 9.2 : 12;                         /* пять клеток — мельче, четыре — крупные */
+  q('rowShow').innerHTML = cur.show.map(function(n){
+    return '<div class="cell"><img style="height:' + hh + 'vh" src="images/' + n + '?v=10" alt=""></div>';
+  }).join('') + '<div class="cell empty" id="cellEmpty" style="min-width:' + (hh * 0.8) + 'vh;min-height:' + (hh + 3) + 'vh"></div>';
+  var row = q('rowAns'); row.innerHTML = '';
+  shuffle(cur.opts).forEach(function(n){
+    var b = document.createElement('button');
+    b.className = 'btn figbtn';
+    b.innerHTML = '<img class="figopt" src="images/' + n + '?v=10" alt="">';
+    b.setAttribute('data-act','rowPick(el,"' + n + '")');
+    row.appendChild(b);
+  });
+  q('cntRow').textContent = 'Узор ' + (rowIdx+1) + ' из ' + ROWS.length;
+}
+function rowPick(el, name){
+  if(name === ROWS[rowIdx].ans){
+    rowErr = 0;
+    var ce = q('cellEmpty');
+    if(ce){ ce.className = 'cell filled'; ce.innerHTML = '<img src="images/' + name + '?v=10" alt="">'; }
+    if(rowIdx < ROWS.length-1){ rowIdx++; praise(); setTimeout(drawRow, 2400); }
+    else { praise(); setTimeout(function(){ footNext(NEXT.s4, 'Дальше ➡'); }, 1200); }
+  } else {
+    el.classList.add('shake'); play('ne_tochno');
+    setTimeout(function(){ el.classList.remove('shake'); }, 500);
+    if(++rowErr >= 3) giveSkip('s4');
+  }
+}
+
+/* ── СКОРОГОВОРКА ────────────────────────────────────────────────── */
+ONSHOW['ss'] = function(){
+  q('skorText').textContent = SKOR.say + ':';
+  q('skorSay').innerHTML =
+      '<div class="skorline">Лёгкий вариант:<br>«' + SKOR.t1 + '»</div>' +
+      '<div class="skorline">Второй вариант:<br>«' + SKOR.t2 + '»</div>';
+};
+
+/* ── 5. ЗАДАЧИ ───────────────────────────────────────────────────── */
+var sumIdx = 0, sumErr = 0;
+ONSHOW['s6'] = function(){ sumIdx = 0; sumErr = 0; drawSum(); };
+function sumRow(src, cnt){
+  var line = document.createElement('div'); line.className = 'birds';
+  for(var i = 0; i < cnt; i++){
+    var im = document.createElement('img'); im.src = 'images/' + src + '?v=10';
+    line.appendChild(im);
+  }
+  return line;
+}
+function sumLabel(txt){
+  var d = document.createElement('div'); d.className = 'rowlab'; d.textContent = txt; return d;
+}
+/* вычитание: второй ряд — со знаком «минус», без слова «улетели» */
+function sumMinusRow(src, cnt){
+  var line = document.createElement('div'); line.className = 'birds';
+  var m = document.createElement('div'); m.className = 'sign'; m.innerHTML = '&minus;';
+  line.appendChild(m);
+  for(var i = 0; i < cnt; i++){
+    var im = document.createElement('img'); im.src = 'images/' + src + '?v=10'; line.appendChild(im);
+  }
+  return line;
+}
+function drawSum(){
+  var s = SUMS[sumIdx];
+  var box = q('countBirds'); box.innerHTML = '';
+  box.appendChild(sumRow(s.a, s.n));                    /* первая группа */
+  if(s.gone){                                           /* вычитание: второй ряд со знаком «−» */
+    box.appendChild(sumMinusRow(s.a, s.gone));
+  }
+  if(s.a2) box.appendChild(sumRow(s.a2, s.n2));         /* вторая группа */
+  if(s.a3) box.appendChild(sumRow(s.a3, s.n3));         /* третья группа (задача в два действия) */
+  q('countExpr').textContent = s.expr;
+  q('cntSum').textContent = 'Пример ' + (sumIdx+1) + ' из ' + SUMS.length;
+  if(s.say) play(s.say);
+  var row = q('countAns'); row.innerHTML = '';
+  shuffle([s.ans].concat(s.wrong)).forEach(function(v){
+    var b = document.createElement('button');
+    b.className = 'btn ans'; b.textContent = v;
+    b.setAttribute('data-act','sumPick(el,'+v+')');
+    row.appendChild(b);
+  });
+}
+function sumPick(el, v){
+  if(v === SUMS[sumIdx].ans){
+    sumErr = 0;
+    if(sumIdx < SUMS.length-1){ sumIdx++; praise(); setTimeout(drawSum, 2400); }
+    else { praise(); setTimeout(function(){ footNext(NEXT.s6,'Дальше ➡'); }, 1200); }
+  } else {
+    el.classList.add('shake'); play('ne_tochno');
+    setTimeout(function(){ el.classList.remove('shake'); }, 500);
+    if(++sumErr >= 3) giveSkip('s6');
+  }
+}
+
+/* ── 6. СОСТАВЬ ПРЕДЛОЖЕНИЕ ──────────────────────────────────────── */
+var sentIdx = 0, sentStep = 0, sentErr = 0, sentWords = [];
+ONSHOW['s7'] = function(){ sentIdx = 0; sentErr = 0; drawSent(); };
+function drawSent(){
+  var cur = SENTS[sentIdx];
+  sentWords = cur.t.split(' ');
+  sentStep = 0;
+  q('sentLine').innerHTML = '';
+  q('sentPic').innerHTML = '';
+  var row = q('sentBtns'); row.innerHTML = '';
+  var order = shuffle(sentWords);
+  if(order.join(' ') === sentWords.join(' ')) order = order.slice(1).concat(order.slice(0,1));  /* точно перемешать */
+  order.forEach(function(w){
+    var b = document.createElement('button');
+    b.className = 'btn'; b.innerHTML = paint(w);
+    b.setAttribute('data-act','sentPick(el,"'+w+'")');
+    row.appendChild(b);
+  });
+  q('cntSent').textContent = 'Предложение ' + (sentIdx+1) + ' из ' + SENTS.length;
+}
+function sentPick(el, w){
+  if(w === sentWords[sentStep]){
+    sentStep++; el.remove();
+    var line = q('sentLine');
+    line.innerHTML = sentWords.slice(0, sentStep).map(function(x, k){
+      var last = (k === sentWords.length-1);
+      return '<span>' + paint(x) + (last ? '.' : '') + '</span>';
+    }).join(' ');
+    if(sentStep === sentWords.length){
+      q('sentPic').innerHTML = picture(SENTS[sentIdx].i);
+      if(sentIdx < SENTS.length-1){ sentIdx++; praise(); setTimeout(drawSent, 3000); }
+      else { praise(); setTimeout(function(){ footNext(NEXT.s7,'Дальше ➡'); }, 1200); }
+    }
+  } else {
+    el.classList.add('shake'); play('ne_tochno');
+    setTimeout(function(){ el.classList.remove('shake'); }, 500);
+    if(++sentErr >= 3) giveSkip('s7');
+  }
+}
+
+/* ── 1. МЕСЯЦЫ ОСЕНИ (порядок) ───────────────────────────────────────
+   Три карточки перемешаны, ребёнок нажимает по порядку: сентябрь → октябрь → ноябрь. */
+var monPicked = '', monDone = 0, monErr = 0;
+ONSHOW['sm'] = function(){
+  monPicked = ''; monDone = 0; monErr = 0;
+  var pics = q('monRow'), words = q('monWords');
+  pics.innerHTML = ''; words.innerHTML = '';
+  shuffle(MONTHS.slice()).forEach(function(m){
+    var b = document.createElement('button');
+    b.className = 'btn mcard';
+    b.innerHTML = '<img src="images/' + m.i + '?v=10" alt="">';
+    b.setAttribute('data-act','monPic(el,"' + m.t + '")');
+    pics.appendChild(b);
+  });
+  shuffle(MONTHS.slice()).forEach(function(m){
+    var b = document.createElement('button');
+    b.className = 'btn mword';
+    b.innerHTML = paint(m.t);
+    b.setAttribute('data-act','monWord(el,"' + m.t + '")');
+    words.appendChild(b);
+  });
+  q('cntMonth').textContent = 'Месяц ' + monDone + ' из ' + MONTHS.length;
+};
+function monPic(el, t){
+  [].slice.call(q('monRow').querySelectorAll('.mcard')).forEach(function(x){ x.classList.remove('picked'); });
+  el.classList.add('picked'); monPicked = t;
+}
+function monWord(el, t){
+  if(!monPicked){
+    el.classList.add('shake'); play('ne_tochno');
+    setTimeout(function(){ el.classList.remove('shake'); }, 500); return;
+  }
+  if(t === monPicked){
+    monDone++; monErr = 0; monPicked = '';
+    [].slice.call(q('monRow').querySelectorAll('.mcard')).forEach(function(x){
+      if((x.getAttribute('data-act') || '').indexOf('"' + t + '"') > -1){ x.classList.add('done'); x.removeAttribute('data-act'); }
+    });
+    el.classList.add('done'); el.removeAttribute('data-act');
+    q('cntMonth').textContent = 'Месяц ' + monDone + ' из ' + MONTHS.length;
+    if(monDone === MONTHS.length){ praise(); setTimeout(function(){ footNext(NEXT.sm,'Дальше ➡'); }, 1200); }
+  } else {
+    el.classList.add('shake'); play('ne_tochno');
+    setTimeout(function(){ el.classList.remove('shake'); }, 500);
+    if(++monErr >= 3) giveSkip('sm');
+  }
+}
+
+/* ── 4. СРАВНИ: РАННЯЯ И ПОЗДНЯЯ ОСЕНЬ ───────────────────────────────
+   Две картинки, выбрать нужную. ЧТО МЕНЯЕМ: массив CMP. */
+var cmpIdx = 0, cmpErr = 0;
+ONSHOW['sc'] = function(){ cmpIdx = 0; cmpErr = 0; drawCmp(); };
+function drawCmp(){
+  var c = CMP[cmpIdx];
+  q('cmpQ').textContent = c.q;
+  var row = q('cmpRow'); row.innerHTML = '';
+  shuffle([c.a, c.b]).forEach(function(f){
+    var b = document.createElement('button');
+    b.className = 'btn ccard';
+    b.innerHTML = '<img src="images/' + f + '?v=10" alt="">';
+    b.setAttribute('data-act','cmpPick(el,"' + f + '")');
+    row.appendChild(b);
+  });
+  q('cntCmp').textContent = 'Вопрос ' + (cmpIdx+1) + ' из ' + CMP.length;
+  if(c.say) play(c.say);
+}
+function cmpPick(el, f){
+  if(f === CMP[cmpIdx].a){
+    cmpErr = 0;
+    /* неверная картинка исчезает, верная остаётся крупно */
+    [].slice.call(q('cmpRow').querySelectorAll('.ccard')).forEach(function(c){
+      if((c.innerHTML || '').indexOf(f) > -1){ c.classList.add('big'); c.removeAttribute('data-act'); }
+      else { c.style.display = 'none'; }
+    });
+    if(cmpIdx < CMP.length-1){ cmpIdx++; praise(); setTimeout(drawCmp, 2300); }
+    else { praise(); setTimeout(function(){ footNext(NEXT.sc,'Дальше ➡'); }, 1600); }
+  } else {
+    el.classList.add('shake'); play('ne_tochno');
+    setTimeout(function(){ el.classList.remove('shake'); }, 500);
+    if(++cmpErr >= 3) giveSkip('sc');
+  }
+}
+
+/* ── 8. ПОЛЕ «НАЙДИ ВСЕ…»: 4×4 → 5×5 → 5×5 → 6×6 ───────────────────
+   В каждой клетке случайная фигура. Раунды: зелёные квадраты, круги,
+   красные фигурки, треугольники. ЧТО МЕНЯЕМ: массив GR_ROUNDS. */
+var ALL_FIGS = ['fig_kv_zheltyj.jpg','fig_kv_krasnyj.jpg','fig_kv_sinij.jpg','fig_kv_zelenyj.jpg',
+                'fig_krug_zheltyj.jpg','fig_krug_krasnyj.jpg','fig_krug_zelenyj.jpg','fig_krug_sinij.jpg',
+                'fig_tre_zheltyj.jpg','fig_tre_krasnyj.jpg','fig_tre_sinij.jpg','fig_tre_zelenyj.jpg',
+                'fig_oval_zheltyj.jpg','fig_oval_krasnyj.jpg','fig_oval_sinij.jpg','fig_oval_zelenyj.jpg'];
+var GR_ROUNDS = [
+  { n:4, want:4, say:'g1', title:'Найди все квадраты зелёного цвета', test:function(f){ return f === 'fig_kv_zelenyj.jpg'; } },
+  { n:5, want:5, say:'g2', title:'Найди все круги',                   test:function(f){ return f.indexOf('fig_krug_') === 0; } },
+  { n:5, want:5, say:'g3', title:'Найди все красные фигурки',         test:function(f){ return f.indexOf('_krasnyj') > 0; } },
+  { n:6, want:6, say:'g4', title:'Найди все треугольники',            test:function(f){ return f.indexOf('fig_tre_') === 0; } }
+];
+var grRound = 0, grFound = 0, grErr = 0;
+ONSHOW['sg'] = function(){ grRound = 0; drawGreen(); };
+function drawGreen(){
+  var R = GR_ROUNDS[grRound];
+  grFound = 0; grErr = 0;
+  q('sgTitle').textContent = R.title;
+  if(R.say) play(R.say);
+  var box = q('greenRow');
+  box.style.gridTemplateColumns = 'repeat(' + R.n + ',1fr)';
+  box.innerHTML = '';
+  var targets = ALL_FIGS.filter(function(f){ return R.test(f); });
+  var others  = ALL_FIGS.filter(function(f){ return !R.test(f); });
+  var cells = [];
+  for(var i = 0; i < R.want; i++) cells.push({ t:1, f:targets[i % targets.length] });
+  var pool = shuffle(others.slice());
+  for(var j = 0; j < R.n*R.n - R.want; j++) cells.push({ t:0, f:pool[j % pool.length] });
+  var h = R.n <= 4 ? 9 : (R.n === 5 ? 7.5 : 6);
+  shuffle(cells).forEach(function(c){
+    var b = document.createElement('button');
+    b.className = 'btn gcell';
+    b.innerHTML = '<img style="height:' + h + 'vh;max-height:' + h + 'vh" src="images/' + c.f + '?v=10" alt="">';
+    b.setAttribute('data-act','greenPick(el,' + c.t + ')');
+    box.appendChild(b);
+  });
+  q('cntGreen').textContent = 'Найдено: 0 из ' + R.want + ' · поле ' + R.n + '×' + R.n;
+}
+function greenPick(el, isTarget){
+  var R = GR_ROUNDS[grRound];
+  if(isTarget === 1 && !el.classList.contains('found')){
+    el.classList.add('found'); el.removeAttribute('data-act');
+    grFound++; grErr = 0;
+    q('cntGreen').textContent = 'Найдено: ' + grFound + ' из ' + R.want + ' · поле ' + R.n + '×' + R.n;
+    if(grFound === R.want){
+      if(grRound < GR_ROUNDS.length - 1){ praise(); grRound++; setTimeout(drawGreen, 2800); }
+      else { praise(); setTimeout(function(){ footNext(NEXT.sg,'Дальше ➡'); }, 1200); }
+    }
+  } else if(isTarget !== 1){
+    el.classList.add('shake'); play('ne_tochno');
+    setTimeout(function(){ el.classList.remove('shake'); }, 500);
+    if(++grErr >= 3) giveSkip('sg');
+  }
+}
+
+/* ── ЗАГАДКА ──────────────────────────────────────────────────────
+   Текст загадки + три отгадки; верная — похвала и картинка-отгадка. */
+var ridIdx = 0, ridErr = 0;
+ONSHOW['sz'] = function(){ ridIdx = 0; ridErr = 0; drawRiddle(); };
+function drawRiddle(){
+  var r = RIDDLES[ridIdx];
+  q('ridText').style.display = '';
+  q('ridText').textContent = r.t;
+  q('ridPic').innerHTML = '';
+  var row = q('ridRow'); row.innerHTML = '';
+  shuffle(r.opts.slice()).forEach(function(o){
+    var b = document.createElement('button');
+    b.className = 'btn ropt';
+    b.innerHTML = '<img src="images/' + o.i + '?v=10" alt=""><div class="cap">' + paint(o.c) + '</div>';
+    b.setAttribute('data-act','ridPick(el,"' + o.c + '")');
+    row.appendChild(b);
+  });
+  q('cntRiddle').textContent = 'Загадка ' + (ridIdx+1) + ' из ' + RIDDLES.length;
+  if(r.say) play(r.say);
+}
+function ridPick(el, t){
+  var r = RIDDLES[ridIdx];
+  if(t === r.a){
+    ridErr = 0;
+    if(r.reward){
+      q('ridText').style.display = 'none';                 /* оставляем только картинку-отгадку */
+      q('ridRow').innerHTML = '';
+      q('ridPic').innerHTML = '<img src="images/' + r.reward + '?v=10" alt="">';
+    }
+    if(ridIdx < RIDDLES.length-1){ ridIdx++; praise(); setTimeout(drawRiddle, 2800); }
+    else { praise(); setTimeout(function(){ footNext(NEXT.sz,'Дальше ➡'); }, 1200); }
+  } else {
+    el.classList.add('shake'); play('ne_tochno');
+    setTimeout(function(){ el.classList.remove('shake'); }, 500);
+    if(++ridErr >= 3) giveSkip('sz');
+  }
+}
+
+/* ── клики: всё на касание (pointerdown), как требует чек-лист ── */
+document.addEventListener('pointerdown', function(e){
+  var el = e.target.closest ? e.target.closest('[data-act]') : null;
+  if(!el) return;
+  e.preventDefault();
+  var code = el.getAttribute('data-act');
+  try{ (new Function('var el=arguments[0];' + code))(el); }catch(err){}
+}, false);
+
+show('s0');
+</script>
+</body>
+</html>
